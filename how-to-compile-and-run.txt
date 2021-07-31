@@ -1,0 +1,36 @@
+Як я зробив, шоб компілювалося і запускалося.
+
+Став в ipBase/
+Створив bin/classes/
+Створив src/ua/uz/terlz/ipbase/ (саме так, з малої букви)
+В ньому створив MainWindow.java і Main.java.
+В кожному з них вказано package ua.uz.terlz.ipbase;
+В Main.java import ua.uz.terlz.ipbase.MainWindow;
+
+Компілюю.
+(стою далі в ipBase/)
+javac src/ua/uz/terlz/ipbase/MainWindow.java -cp .:bin/classes:./libs/mysql-connector-java-5.1.27-bin.jar -d bin/classes/
+javac src/ua/uz/terlz/ipbase/Main.java -cp .:./bin/classes:./libs/mysql-connector-java-5.1.27-bin.jar -d bin/classes/
+
+Запускаю.
+(стою в ipBase/)
+java -cp .:./bin/classes:./libs/mysql-connector-java-5.1.27-bin.jar ua.uz.terlz.ipbase.Main
+
+Створюю і запускаю jar.
+(стою в ipBase/)
+В manifest.mf дописую (при потребі) Class-Path: libs/mysql-connector-java-5.1.27-bin.jar
+(а може й не libs)
+Далі.
+jar cvmf manifest.mf ipbase.jar -C ./bin/classes ua
+jar створився. І запускаю.
+java -jar ipbase.jar
+
+Виставляю оновлення.
+(стою в ipBase/)
+Міняю версію в Update.java
+Компілюю Update.java
+Створюю jar і ставлю його на ftp
+Створюю ipBase-*-full.zip і ставлю його на ftp
+Підправляю на ftp файл опису update.ver
+Редагую права на файли на ftp (при потребі).
+
